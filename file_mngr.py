@@ -19,25 +19,45 @@ class My_Files(object):
 
 
 	def filter_files(self, filters=[], filter_out=True):
-		# Get the files in the root directory
 		if not self.filtered_files:
-			self.filtered_files = self._get_all_files()
+			self.filtered_files = list(self.all_files)
 		to_remove = []
 		if filters:
 			for level in range(0,len(self.filtered_files)):
-				if self._contains(filters,self.filtered_files[level]) == filter_out:
+				if self._contains(filters, self.filtered_files[level]) == filter_out:
 					to_remove.append(self.filtered_files[level])
 		self.filtered_files = array_remove_array(self.filtered_files, to_remove)
 
 
 	def filter_dirs(self, filters=[], filter_out=True):
-		# Get the files in the root directory
 		if not self.filtered_dirs:
-			self.filtered_dirs = self._get_all_directories()
+			self.filtered_dirs = list(self.all_dirs)
 		to_remove = []
 		if filters:
 			for level in range(0,len(self.filtered_dirs)):
-				if self._contains(filters,self.filtered_dirs[level]) == filter_out:
+				if self._contains(filters, self.filtered_dirs[level]) == filter_out:
+					to_remove.append(self.filtered_dirs[level])
+		self.filtered_dirs = array_remove_array(self.filtered_dirs, to_remove)
+
+
+	def filter_files_hidden(self):
+		if not self.filtered_files:
+			self.filtered_files = list(self.all_files)
+		to_remove = []
+		if filters:
+			for level in range(0,len(self.filtered_files)):
+				if self._contains(['/.'], self.filtered_files[level]):
+					to_remove.append(self.filtered_files[level])
+		self.filtered_files = array_remove_array(self.filtered_files, to_remove)
+
+
+	def filter_dirs_hidden(self):
+		if not self.filtered_dirs:
+			self.filtered_dirs = list(self.all_dirs)
+		to_remove = []
+		if filters:
+			for level in range(0,len(self.filtered_dirs)):
+				if self._contains(['/.'], self.filtered_dirs[level]):
 					to_remove.append(self.filtered_dirs[level])
 		self.filtered_dirs = array_remove_array(self.filtered_dirs, to_remove)
 
