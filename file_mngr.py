@@ -28,7 +28,6 @@ class My_Files(object):
 					to_remove.append(self.filtered_files[level])
 		self.filtered_files = array_remove_array(self.filtered_files, to_remove)
 
-
 	def filter_dirs(self, filters=[], filter_out=True):
 		if not self.filtered_dirs:
 			self.filtered_dirs = list(self.all_dirs)
