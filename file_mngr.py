@@ -1,5 +1,5 @@
 import os
-from keith.array_tools import array_remove_array
+from array_tools import array_remove_array
 
 
 class My_Files(object):
